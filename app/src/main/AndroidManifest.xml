@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".StoreInfo"
+            android:name=".CouponInfo"
             android:label="@string/title_activity_store_info"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
