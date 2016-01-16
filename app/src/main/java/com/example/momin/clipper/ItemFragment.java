@@ -9,13 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Toast;
 
-import com.example.momin.clipper.dummy.DummyContent;
-import com.example.momin.clipper.dummy.DummyContent.DummyItem;
-
-import java.util.List;
+import com.example.momin.clipper.dummy.StoreContent;
+import com.example.momin.clipper.dummy.StoreContent.DummyItem;
 
 /**
  * A fragment representing a list of Items.
@@ -71,7 +67,7 @@ public class ItemFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(StoreContent.ITEMS, mListener));
         }
         return view;
     }

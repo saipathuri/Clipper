@@ -14,7 +14,7 @@ import com.example.momin.clipper.Store;
  * <p/>
  * TODO: Replace all uses of this class before publishing your app.
  */
-public class DummyContent {
+public class StoreContent {
 
     /**
      * An array of sample (dummy) items.

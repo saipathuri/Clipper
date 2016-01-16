@@ -23,12 +23,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
+import com.example.momin.clipper.dummy.StoreContent;
 import com.google.android.gms.common.*;
 
 
-import com.example.momin.clipper.dummy.DummyContent;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
@@ -200,7 +199,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     }
 
     @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+    public void onListFragmentInteraction(StoreContent.DummyItem item) {
         Intent intent = new Intent(this, StoreActivity.class);
         CouponInfo.display = item.id;
         startActivity(intent);

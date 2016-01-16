@@ -2,7 +2,6 @@ package com.example.momin.clipper;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,10 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.momin.clipper.dummy.DummyContent;
-import com.example.momin.clipper.dummy.DummyContent.DummyItem;
-
-import java.util.List;
+import com.example.momin.clipper.dummy.StoreContent;
+import com.example.momin.clipper.dummy.StoreContent.DummyItem;
 
 /**
  * A fragment representing a list of Items.
@@ -69,7 +66,7 @@ public class StoreSpecificCoupons extends android.app.Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyItemRecyclerViewAdapter2(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new MyItemRecyclerViewAdapter2(StoreContent.ITEMS, mListener));
         }
         return view;
     }
