@@ -28,7 +28,7 @@ public class StoreContent {
 
     private static final int COUNT = 25;
 
-    public void createList(ArrayList<Store> stores){
+    public static void createList(ArrayList<Store> stores){
 
         for(int i = 1; i <= stores.size(); i++){
             String title = stores.get(i-1).getName();
