@@ -18,7 +18,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+
 import com.example.momin.clipper.dummy.DummyContent;
+
+// 8coupons api code 7706d583294296431e81abac1b84d57a3ff88f5b710536108616ae1a0fa4b64919e2fc523bd3a1bdbbab66947a0d67a5
+
+
 
 
 public class MainActivity extends ActionBarActivity implements ActionBar.TabListener,
