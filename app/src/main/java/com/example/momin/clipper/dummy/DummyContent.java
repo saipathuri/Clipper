@@ -28,9 +28,9 @@ public class DummyContent {
     private static final int COUNT = 25;
 
     public void createList(ArrayList<Store> stores){
-        stores = StoreLister.generateListing()
+        
         for(int i = 0; i < stores.size(); i++){
-
+            addItem()
         }
     }
 
