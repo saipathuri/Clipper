@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 
 import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -128,16 +129,33 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         // The good stuff goes here.
         Toast.makeText(MainActivity.this, "Play Services is available", Toast.LENGTH_SHORT).show();
         int permissionCheck = ContextCompat.checkSelfPermission(this,
-                Manifest.permission.WRITE_CALENDAR);
-        if(permissionCheck == PackageManager.PERMISSION_GRANTED) {
+                Manifest.permission.ACCESS_FINE_LOCATION);
+
+        if(permissionCheck != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    1);
+        }
+
+        else if(permissionCheck == PackageManager.PERMISSION_GRANTED){
             mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                     mGoogleApiClient);
-        }else{
-            Toast.makeText(MainActivity.this, "Permission Denied", Toast.LENGTH_SHORT).show();
+            if(mLastLocation != null) {
+                Toast.makeText(MainActivity.this, "Location Found", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this,
+                        "Lat: " + mLastLocation.getLatitude()
+                                + " Long: " + mLastLocation.getLongitude(),
+                        Toast.LENGTH_SHORT).show();
+            }
+            else
+                Toast.makeText(MainActivity.this, "Can't get location", Toast.LENGTH_SHORT).show();
         }
+        sendLocation(mLastLocation);
     }
 
-
+    private void sendLocation(Location l){
+        StoreLister.generateListing(l);
+    }
     @Override
     public void onConnectionSuspended(int cause) {
         // The connection has been interrupted.
