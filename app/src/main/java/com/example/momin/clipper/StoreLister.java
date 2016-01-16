@@ -30,7 +30,7 @@ public class StoreLister {
 //    }
 
     @SuppressLint("LongLogTag")
-    public ArrayList<Store> generateListing(Location l) {
+    public static ArrayList<Store> generateListing(Location l) {
 
         if (l == null)
             return null;
