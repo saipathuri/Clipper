@@ -1,5 +1,6 @@
 package com.example.momin.clipper;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -23,10 +24,15 @@ public class StoreActivity extends AppCompatActivity implements StoreSpecificCou
         setContentView(R.layout.activity_store);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        android.app.FragmentManager fm = getFragmentManager();
+        android.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        StoreSpecificCoupons sc = new StoreSpecificCoupons();
+        fragmentTransaction.add(R.id.lists, sc,"Hello");
+        fragmentTransaction.commit();
     }
-
-    @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
-
+        Intent intent = new Intent(this, CouponInfo.class);
+        CouponInfo.display = item.id;
+        startActivity(intent);
     }
 }

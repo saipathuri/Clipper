@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 
 import android.content.Intent;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -17,20 +18,17 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.*;
 
 
 import com.example.momin.clipper.dummy.DummyContent;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
@@ -128,16 +126,23 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         // The good stuff goes here.
         Toast.makeText(MainActivity.this, "Play Services is available", Toast.LENGTH_SHORT).show();
         int permissionCheck = ContextCompat.checkSelfPermission(this,
-                Manifest.permission.WRITE_CALENDAR);
-        if(permissionCheck == PackageManager.PERMISSION_GRANTED) {
+                Manifest.permission.ACCESS_FINE_LOCATION);
+
+        if(permissionCheck != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    1);
+        }
+        else if(permissionCheck == PackageManager.PERMISSION_GRANTED){
             mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                     mGoogleApiClient);
-        }else{
-            Toast.makeText(MainActivity.this, "Permission Denied", Toast.LENGTH_SHORT).show();
         }
+        sendLocation(mLastLocation);
     }
 
-
+    private void sendLocation(Location l){
+        StoreLister.generateListing(l);
+    }
     @Override
     public void onConnectionSuspended(int cause) {
         // The connection has been interrupted.
@@ -196,7 +201,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
         Intent intent = new Intent(this, StoreActivity.class);
-        StoreInfo.display = item.id;
+        CouponInfo.display = item.id;
         startActivity(intent);
     }
     /**

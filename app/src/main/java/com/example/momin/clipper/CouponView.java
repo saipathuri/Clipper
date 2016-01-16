@@ -9,9 +9,9 @@ import android.view.View;
 /**
  * Created by Momin on 1/16/2016.
  */
-public class StoreView extends View {
+public class CouponView extends View {
     String title;
-    public StoreView(Context context, String t) {
+    public CouponView(Context context, String t) {
         super(context);
         title = t;
     }
