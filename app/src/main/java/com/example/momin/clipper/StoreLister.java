@@ -7,6 +7,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.util.Log;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -16,16 +17,37 @@ import java.util.Locale;
  */
 public class StoreLister {
 
+    private Context myContext;
+    private Geocoder geocoder;
+
+    public StoreLister(Context context) {
+        myContext = context;
+        geocoder = new Geocoder(myContext, Locale.getDefault());
+    }
+
+    @SuppressLint("LongLogTag")
     public ArrayList<Store> generateListing(Location l) {
 
         if (l == null)
             return null;
         else {
-            Geocoder geocoder = new Geocoder(this, Locale.getDefault());
 
             double lat = l.getLatitude();
             double lng = l.getLongitude();
-            List<Address> addresses = geocoder.getFromLocation(lat, lng, 1);
+            try {
+                List<Address> addresses = geocoder.getFromLocation(lat, lng, 1);
+                if (addresses != null) {
+                    Address returnedAddress = addresses.get(0);
+                    String zip = returnedAddress.getPostalCode();
+
+                }
+                else {
+                    Log.w("My Curr location address", "No Address returned");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
 
 
             String categories;
@@ -33,31 +55,6 @@ public class StoreLister {
             //http://api.8coupons.com/v1/getdeals?key=XYZ&zip=10022&mileradius=20&limit=500&userid=18381
         }
         return null;
-    }
-
-    @SuppressLint("LongLogTag")
-    private String getCompleteAddressString(double LATITUDE, double LONGITUDE) {
-        String strAdd = "";
-        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-        try {
-            List<Address> addresses = geocoder.getFromLocation(LATITUDE, LONGITUDE, 1);
-            if (addresses != null) {
-                Address returnedAddress = addresses.get(0);
-                StringBuilder strReturnedAddress = new StringBuilder("");
-
-                for (int i = 0; i < returnedAddress.getMaxAddressLineIndex(); i++) {
-                    strReturnedAddress.append(returnedAddress.getAddressLine(i)).append("\n");
-                }
-                strAdd = strReturnedAddress.toString();
-                Log.w("My Current loction address", "" + strReturnedAddress.toString());
-            } else {
-                Log.w("My Current loction address", "No Address returned!");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            Log.w("My Current loction address", "Canont get Address!");
-        }
-        return strAdd;
     }
 
 }
