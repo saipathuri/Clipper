@@ -3,9 +3,12 @@ package com.example.momin.clipper;
 import java.util.Locale;
 
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.location.Location;
 
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -124,14 +127,16 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         // Connected to Google Play services!
         // The good stuff goes here.
         Toast.makeText(MainActivity.this, "Play Services is available", Toast.LENGTH_SHORT).show();
-        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
-                mGoogleApiClient);
-        if (mLastLocation != null) {
-            mLatitudeText.setText(String.valueOf(mLastLocation.getLatitude()));
-            mLongitudeText.setText(String.valueOf(mLastLocation.getLongitude()));
+        int permissionCheck = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_CALENDAR);
+        if(permissionCheck == PackageManager.PERMISSION_GRANTED) {
+            mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+                    mGoogleApiClient);
+        }else{
+            Toast.makeText(MainActivity.this, "Permission Denied", Toast.LENGTH_SHORT).show();
         }
     }
-    }
+
 
     @Override
     public void onConnectionSuspended(int cause) {
