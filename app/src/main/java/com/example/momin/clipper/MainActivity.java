@@ -2,7 +2,13 @@ package com.example.momin.clipper;
 
 import java.util.Locale;
 
+
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.location.Location;
+
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -20,8 +26,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.*;
+
 
 import com.example.momin.clipper.dummy.DummyContent;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
+import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.location.*;
 
 // 8coupons api code 7706d583294296431e81abac1b84d57a3ff88f5b710536108616ae1a0fa4b64919e2fc523bd3a1bdbbab66947a0d67a5
 
@@ -29,7 +42,7 @@ import com.example.momin.clipper.dummy.DummyContent;
 
 
 public class MainActivity extends ActionBarActivity implements ActionBar.TabListener,
-        ItemFragment.OnListFragmentInteractionListener {
+        ItemFragment.OnListFragmentInteractionListener, ConnectionCallbacks, OnConnectionFailedListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -45,6 +58,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
      * The {@link ViewPager} that will host the section contents.
      */
     ViewPager mViewPager;
+
+    private GoogleApiClient mGoogleApiClient;
+    private Location mLastLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +100,59 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                             .setText(mSectionsPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
         }
+
+        //Google API
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(LocationServices.API)
+                    .build();
+        }
+    }
+
+    protected void onStart() {
+        mGoogleApiClient.connect();
+        super.onStart();
+    }
+
+    protected void onStop() {
+        mGoogleApiClient.disconnect();
+        super.onStop();
+    }
+
+    //TODO
+    @Override
+    public void onConnected(Bundle connectionHint) {
+        // Connected to Google Play services!
+        // The good stuff goes here.
+        Toast.makeText(MainActivity.this, "Play Services is available", Toast.LENGTH_SHORT).show();
+        int permissionCheck = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_CALENDAR);
+        if(permissionCheck == PackageManager.PERMISSION_GRANTED) {
+            mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+                    mGoogleApiClient);
+        }else{
+            Toast.makeText(MainActivity.this, "Permission Denied", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    @Override
+    public void onConnectionSuspended(int cause) {
+        // The connection has been interrupted.
+        // Disable any UI components that depend on Google APIs
+        // until onConnected() is called.
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult result) {
+        // This callback is important for handling errors that
+        // may occur while attempting to connect with Google.
+        //
+        // More about this in the 'Handle Connection Failures' section.
+        int APIavailaibilty = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this);
+        GoogleApiAvailability.getInstance().getErrorDialog(MainActivity.this, APIavailaibilty, 0);
     }
 
 
@@ -126,10 +195,10 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
     @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
-        Intent intent = new Intent(this, StoreInfo.class);
+        Intent intent = new Intent(this, StoreActivity.class);
+        StoreInfo.display = item.id;
         startActivity(intent);
     }
-
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
