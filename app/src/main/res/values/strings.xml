@@ -1,9 +1,15 @@
 <resources>
     <string name="app_name">Clipper</string>
 
+<<<<<<< HEAD
     <string name="title_section1">List View</string>
     <string name="title_section2">Map View</string>
     <string name="title_section3">Best Deals</string>
+=======
+    <string name="title_section1">Stores</string>
+    <string name="title_section2">Map</string>
+    <string name="title_section3">Top Deals</string>
+>>>>>>> c3e93ddf03c09cb79d7603d5c77841e6ce46b134
 
     <string name="hello_world">Hello world!</string>
 
