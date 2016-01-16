@@ -18,20 +18,17 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.*;
 
 
 import com.example.momin.clipper.dummy.DummyContent;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
@@ -214,7 +211,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
         Intent intent = new Intent(this, StoreActivity.class);
-        StoreInfo.display = item.id;
+        CouponInfo.display = item.id;
         startActivity(intent);
     }
     /**
