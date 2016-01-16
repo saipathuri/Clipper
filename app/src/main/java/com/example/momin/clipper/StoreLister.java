@@ -74,6 +74,7 @@ public class StoreLister {
         }
         System.out.println(jsoncontent);
         separateDeals(jsoncontent);
+
     }
 
     private static String readStream(InputStream is) throws IOException {
