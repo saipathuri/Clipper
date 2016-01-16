@@ -39,11 +39,11 @@ public class StoreLister {
 //        geocoder = new Geocoder(myContext, Locale.getDefault());
 //    }
 
-    public static void generateListing() {
+    public static void generateListing(Location l) {
 
 
-        double lat = 38.8871;//l.getLatitude();
-        double lon = -77.0932;//l.getLongitude();
+        double lat = l.getLatitude();
+        double lon = l.getLongitude();
 
         int mileradius = 2;
         int displimit = 1000;
