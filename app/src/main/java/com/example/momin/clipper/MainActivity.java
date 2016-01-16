@@ -2,7 +2,10 @@ package com.example.momin.clipper;
 
 import java.util.Locale;
 
+
 import android.location.Location;
+
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -187,7 +190,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
     @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
-
+        Intent intent = new Intent(this, StoreInfo.class);
+        startActivity(intent);
     }
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
