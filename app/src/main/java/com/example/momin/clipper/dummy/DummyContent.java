@@ -1,5 +1,7 @@
 package com.example.momin.clipper.dummy;
 
+import com.example.momin.clipper.StoreLister;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,10 +27,10 @@ public class DummyContent {
 
     private static final int COUNT = 25;
 
-    static {
-        // Add some sample items.
-        for (int i = 1; i <= COUNT; i++) {
-            addItem(createDummyItem(i));
+    public void createList(ArrayList<Store> stores){
+        stores = StoreLister.generateListing()
+        for(int i = 0; i < stores.size(); i++){
+
         }
     }
 
