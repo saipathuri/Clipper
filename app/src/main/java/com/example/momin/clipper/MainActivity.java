@@ -133,19 +133,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     1);
         }
-
         else if(permissionCheck == PackageManager.PERMISSION_GRANTED){
             mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                     mGoogleApiClient);
-            if(mLastLocation != null) {
-                Toast.makeText(MainActivity.this, "Location Found", Toast.LENGTH_SHORT).show();
-                Toast.makeText(MainActivity.this,
-                        "Lat: " + mLastLocation.getLatitude()
-                                + " Long: " + mLastLocation.getLongitude(),
-                        Toast.LENGTH_SHORT).show();
-            }
-            else
-                Toast.makeText(MainActivity.this, "Can't get location", Toast.LENGTH_SHORT).show();
         }
         sendLocation(mLastLocation);
     }
