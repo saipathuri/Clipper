@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.example.momin.clipper.Store;
 
 /**
  * Helper class for providing sample content for user interfaces created by
@@ -28,9 +29,10 @@ public class DummyContent {
     private static final int COUNT = 25;
 
     public void createList(ArrayList<Store> stores){
-        
-        for(int i = 0; i < stores.size(); i++){
-            addItem()
+
+        for(int i = 1; i <= stores.size(); i++){
+            addItem(new DummyItem(Integer.toString(i), stores.get(i-1).getName(),
+                    Double.toString(stores.get(i-1).getDistance())));
         }
     }
 
@@ -39,7 +41,7 @@ public class DummyContent {
         ITEM_MAP.put(item.id, item);
     }
 
-    private static DummyItem createDummyItem(int position) {
+    static DummyItem createDummyItem(int position) {
         return new DummyItem(String.valueOf(position), "Item " + position, makeDetails(position));
     }
 
