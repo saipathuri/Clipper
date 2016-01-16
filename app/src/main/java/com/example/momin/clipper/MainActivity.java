@@ -18,8 +18,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.momin.clipper.dummy.DummyContent;
 
-public class MainActivity extends ActionBarActivity implements ActionBar.TabListener {
+
+public class MainActivity extends ActionBarActivity implements ActionBar.TabListener,
+        ItemFragment.OnListFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -114,6 +117,11 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
     }
 
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+
+    }
+
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
@@ -128,7 +136,10 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         public Fragment getItem(int position) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            if (position%2 == 0)
+                return ItemFragment.newInstance(position + 1);
+            else
+                return PlaceholderFragment.newInstance(position + 1);
         }
 
         @Override
