@@ -143,7 +143,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                     mGoogleApiClient);
         }
-        sendLocation(mLastLocation);
+         if(mLastLocation != null)
+             StoreLister.generateListing(mLastLocation);
     }
 
     private void sendLocation(Location l){
