@@ -8,6 +8,10 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.util.Log;
 
+import com.example.momin.clipper.dummy.StoreContent;
+import com.example.momin.clipper.dummy.StoreContent.*;
+
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,6 +26,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
+/**
+ * Created by Owner on 1/16/16.
+ */
 public class StoreLister {
 
 //    private Context myContext;
@@ -32,11 +39,11 @@ public class StoreLister {
 //        geocoder = new Geocoder(myContext, Locale.getDefault());
 //    }
 
-    public static void generateListing(Location l) {
+    public static void generateListing() {
 
 
-        double lat = l.getLatitude();
-        double lon = l.getLongitude();
+        double lat = 38.8871;//l.getLatitude();
+        double lon = -77.0932;//l.getLongitude();
 
         int mileradius = 2;
         int displimit = 1000;
@@ -72,8 +79,16 @@ public class StoreLister {
         } finally {
             urc.disconnect();
         }
-        System.out.println(jsoncontent);
-        separateDeals(jsoncontent);
+        ArrayList<String> storeinfo = separateDeals(jsoncontent);
+        ArrayList<Store> stores = new ArrayList<Store>();
+        for (int i=0; i< storeinfo.size(); i++) {
+            stores.add(generateStore(storeinfo.get(i)));
+        }
+
+        stores.remove(0);
+        StoreContent.createList(stores);
+
+
 
     }
 
@@ -87,7 +102,7 @@ public class StoreLister {
         return sb.toString();
     }
 
-    private static void separateDeals(String s){
+    private static ArrayList<String> separateDeals(String s){
         StringTokenizer st = new StringTokenizer(s,"{");
         ArrayList<String> storeinfo = new ArrayList<String>();
 
@@ -95,13 +110,53 @@ public class StoreLister {
             storeinfo.add(st.nextToken());
         }
 
+        return storeinfo;
 
+    }
 
-        for (int i=0; i<storeinfo.size(); i++) {
-            System.out.println(storeinfo.get(i));
+    public static Store generateStore(String s) {
+
+        StringTokenizer dets = new StringTokenizer(s,",");
+        ArrayList<String> storedetails = new ArrayList<String>();
+        while (dets.hasMoreTokens()) {
+            storedetails.add(dets.nextToken());
+        }
+        String name = null;
+        String address = null;
+        int totalDeals = 0;
+        String phone = null;
+        double distance = 0;
+        int categoryID = 0;
+        int subcategoryID = 0;
+        String state = null;
+        String city = null;
+        String zip = null;
+
+        for (String j: storedetails) {
+            if (j.startsWith("\"name\":\""))
+                name = j.substring(8, j.length()-1);
+            if (j.startsWith("\"address\":\""))
+                address = j.substring(11, j.length()-1);
+            if (j.startsWith("\"phone\":\""))
+                phone = j.substring(9, j.length()-1);
+            if (j.startsWith("\"distance\":\""))
+                distance = Double.parseDouble(j.substring(12, j.length()-1));
+            if (j.startsWith("\"categoryID\":\""))
+                categoryID = Integer.parseInt(j.substring(14, j.length()-1));
+            if (j.startsWith("\"subcategoryID\":\""))
+                subcategoryID = Integer.parseInt(j.substring(17, j.length()-1));
+            if (j.startsWith("\"totalDealsInThisStore\":\""))
+                totalDeals = Integer.parseInt(j.substring(25, j.length()-1));
+            if (j.startsWith("\"state\":\""))
+                state = j.substring(9, j.length()-1);
+            if (j.startsWith("\"city\":\""))
+                city = j.substring(8, j.length()-1);
+            if (j.startsWith("\"zip\":\""))
+                zip = j.substring(7, j.length()-1);
         }
 
-
+        Store store = new Store(name,address,totalDeals,phone,distance,categoryID,subcategoryID,state,city,zip);
+        return store;
     }
 
 }
