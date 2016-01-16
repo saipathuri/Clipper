@@ -31,8 +31,10 @@ public class DummyContent {
     public void createList(ArrayList<Store> stores){
 
         for(int i = 1; i <= stores.size(); i++){
-            addItem(new DummyItem(Integer.toString(i), stores.get(i-1).getName(),
-                    Double.toString(stores.get(i-1).getDistance())));
+            String title = stores.get(i-1).getName();
+            String distance = String.format("%.2f", Double.toString(stores.get(i-1).getDistance()));
+            String subTitle = distance + " | # of Deals: " + stores.get(i-1).getTotalDeals();
+            addItem(new DummyItem(Integer.toString(i), title, subTitle));
         }
     }
 
