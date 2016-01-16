@@ -22,9 +22,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
-/**
- * Created by Owner on 1/16/16.
- */
 public class StoreLister {
 
 //    private Context myContext;
@@ -35,15 +32,11 @@ public class StoreLister {
 //        geocoder = new Geocoder(myContext, Locale.getDefault());
 //    }
 
-    public static void main(String[] args) {
-        generateListing();
-    }
-
-    public static void generateListing() {
+    public static void generateListing(Location l) {
 
 
-        double lat = 38.8871;//l.getLatitude();
-        double lon = -77.0932;//l.getLongitude();
+        double lat = l.getLatitude();
+        double lon = l.getLongitude();
 
         int mileradius = 2;
         int displimit = 1000;
