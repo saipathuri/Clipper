@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.momin.clipper.StoreSpecificCoupons.OnListFragmentInteractionListener;
-import com.example.momin.clipper.dummy.DummyContent.DummyItem;
+import com.example.momin.clipper.dummy.StoreContent.DummyItem;
 
 import java.util.List;
 

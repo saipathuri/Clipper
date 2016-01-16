@@ -15,20 +15,45 @@ public class Store {
     private ArrayList<Coupon> coupons;
     private int categoryID;
     private int subcategoryID;
+    private String state;
+    private String city;
+    private String zip;
 
-    public Store(String name, String address, int totalDeals, String phone, double distance, ArrayList<Coupon> coupons, int categoryID, int subcategoryID) {
+
+
+    public Store(String name, String address, int totalDeals, String phone,
+                 double distance, int categoryID, int subcategoryID, String state,
+                 String city, String zip) {
         this.name = name;
         this.address = address;
         this.totalDeals = totalDeals;
         this.phone = phone;
         this.distance = distance;
-        this.coupons = coupons;
         this.categoryID = categoryID;
         this.subcategoryID = subcategoryID;
+        this.state = state;
+        this.city = city;
+        this.zip = zip;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getZip() {
+        return zip;
     }
 
     public String getName() {
         return name;
+    }
+
+    public void setCoupons(ArrayList<Coupon> coupons) {
+        this.coupons = coupons;
     }
 
     public String getAddress() {

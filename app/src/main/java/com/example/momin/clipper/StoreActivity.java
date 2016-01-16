@@ -3,19 +3,10 @@ package com.example.momin.clipper;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
-import com.example.momin.clipper.dummy.DummyContent;
-
-import java.util.Locale;
+import com.example.momin.clipper.dummy.StoreContent;
 
 public class StoreActivity extends Activity implements StoreSpecificCoupons.OnListFragmentInteractionListener {
 
@@ -30,7 +21,7 @@ public class StoreActivity extends Activity implements StoreSpecificCoupons.OnLi
         fragmentTransaction.add(R.id.lists, sc,"Hello");
         fragmentTransaction.commit();
     }
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+    public void onListFragmentInteraction(StoreContent.DummyItem item) {
         Intent intent = new Intent(this, CouponInfo.class);
         CouponInfo.display = item.id;
         startActivity(intent);
