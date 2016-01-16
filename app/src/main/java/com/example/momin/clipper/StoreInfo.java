@@ -11,14 +11,16 @@ import com.example.momin.clipper.R;
 
 public class StoreInfo extends AppCompatActivity {
 
-    String display;
+    public static String display = "null";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store_info);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        StoreView sv = new StoreView(this, display);
+        setContentView(sv);
+     //   Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+     //   setSupportActionBar(toolbar);
     }
 
-    public void title(String title){display = title;}
+
+
 }

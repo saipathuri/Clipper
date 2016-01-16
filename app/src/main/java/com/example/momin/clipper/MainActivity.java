@@ -195,7 +195,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
     @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
-        Intent intent = new Intent(this, StoreInfo.class);
+        Intent intent = new Intent(this, StoreActivity.class);
+        StoreInfo.display = item.id;
         startActivity(intent);
     }
     /**

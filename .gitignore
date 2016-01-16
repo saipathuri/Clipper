@@ -4,6 +4,8 @@
 /.idea/libraries
 .DS_Store
 /build
+/captures
+.idea/*.xml
 /capturess
 *.iml
 /.idea/*.xml
