@@ -1,5 +1,6 @@
 package com.example.momin.clipper;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,14 +17,13 @@ import com.example.momin.clipper.dummy.DummyContent;
 
 import java.util.Locale;
 
-public class StoreActivity extends AppCompatActivity implements StoreSpecificCoupons.OnListFragmentInteractionListener {
+public class StoreActivity extends Activity implements StoreSpecificCoupons.OnListFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         android.app.FragmentManager fm = getFragmentManager();
         android.app.FragmentTransaction fragmentTransaction = fm.beginTransaction();
         StoreSpecificCoupons sc = new StoreSpecificCoupons();
