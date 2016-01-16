@@ -36,11 +36,6 @@ import com.google.android.gms.location.*;
 
 import android.os.StrictMode;
 
-// 8coupons api code 7706d583294296431e81abac1b84d57a3ff88f5b710536108616ae1a0fa4b64919e2fc523bd3a1bdbbab66947a0d67a5
-
-
-
-
 public class MainActivity extends ActionBarActivity implements ActionBar.TabListener,
         ItemFragment.OnListFragmentInteractionListener, ConnectionCallbacks, OnConnectionFailedListener {
 
@@ -130,7 +125,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     public void onConnected(Bundle connectionHint) {
         // Connected to Google Play services!
         // The good stuff goes here.
-        Toast.makeText(MainActivity.this, "Play Services is available", Toast.LENGTH_SHORT).show();
         int permissionCheck = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION);
 
