@@ -32,7 +32,7 @@ public class StoreLister {
 //        geocoder = new Geocoder(myContext, Locale.getDefault());
 //    }
 
-    public static void generateListing(Location l) {
+    public static ArrayList<Store> generateListing(Location l) {
 
 
         double lat = l.getLatitude();
@@ -74,6 +74,8 @@ public class StoreLister {
         }
         System.out.println(jsoncontent);
         separateDeals(jsoncontent);
+
+        return null;
     }
 
     private static String readStream(InputStream is) throws IOException {
