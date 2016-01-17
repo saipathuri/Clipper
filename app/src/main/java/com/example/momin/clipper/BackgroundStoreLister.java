@@ -112,7 +112,7 @@ public class BackgroundStoreLister extends AsyncTask<Location, Void, Integer> {
 
                 Collections.sort(stores);
                 StoreContent.createList(stores);
-                CouponContent2.createList(stores);
+                CouponContent2.createList(allCoupons);
 
             } catch (Exception e) {
                 e.printStackTrace();
