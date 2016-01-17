@@ -1,5 +1,6 @@
 package com.example.momin.clipper.dummy;
 
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,8 @@ public class StoreContent {
 
     private static final int COUNT = 25;
 
+    public static RecyclerView r = null;
+
 //    static {
 //        // Add some sample items.
 //        for (int i = 1; i <= COUNT; i++) {
@@ -52,6 +55,7 @@ public class StoreContent {
                 String subTitle = distance + " | # of Deals: " + stores.get(i - 1).getTotalDeals();
                 StoreItem item = new StoreItem(distance + " mi.", title, subTitle, stores.get(i-1));
                 addItem(item);
+                r.getAdapter().notifyDataSetChanged();
             }
         }
         else if(stores.size() == 0){
