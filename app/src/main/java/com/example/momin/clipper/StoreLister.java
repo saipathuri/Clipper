@@ -44,12 +44,13 @@ public class StoreLister {
     public static void generateListing(Location l) {
 
 
-        double lat = l.getLatitude();
-        double lon = l.getLongitude();
+        String lat = Double.toString(l.getLatitude());
+        String lon = Double.toString(l.getLongitude());
 
-        int mileradius = 2;
-        int displimit = 1000;
+        String mileradius = Integer.toString(2);
+        String displimit = Integer.toString(1000);
         String orderby = "radius";
+
 
         String query = "http://api.8coupons.com/v1/getdeals?key=7706d583294296431e81abac1b84d57a3ff88f5b710536108616ae1a0fa4b64919e2fc523bd3a1bdbbab66947a0d67a5";
         query += "&lat=" + lat;
@@ -62,6 +63,8 @@ public class StoreLister {
 
         URL url = null;
         HttpURLConnection urc = null;
+
+
 //        try {
 //            url = new URL(query);
 //            urc = (HttpURLConnection) url.openConnection();
@@ -80,7 +83,7 @@ public class StoreLister {
 
         try {
             Log.e("StoreLister Updated", "Running under try");
-            url = new URL("http://api.8coupons.com/v1/getrealtimetraveleals?key=d4aa04ccac274d92eb18748cd60271e1820913dde745898b18ac4219e1e19d7496f3e7c85a1c34d0b2a0cc3bfa6dff85&limit=1");
+            url = new URL(query);
             urc = (HttpURLConnection) url.openConnection();
             InputStream in = urc.getInputStream();
             InputStreamReader isw = new InputStreamReader(in);
@@ -101,6 +104,7 @@ public class StoreLister {
         } finally {
             urc.disconnect();
         }
+        
 //        try {
 //
 //        } catch (MalformedURLException e) {
