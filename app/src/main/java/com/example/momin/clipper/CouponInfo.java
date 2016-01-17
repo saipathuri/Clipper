@@ -28,6 +28,14 @@ public class CouponInfo extends AppCompatActivity {
         dealName=(TextView)findViewById(R.id.dealName);
         dealName.setText(display.getDealTitle());
 
+        TextView dealInfo =new TextView(this);
+        dealName=(TextView)findViewById(R.id.dealInfo);
+        dealName.setText(display.getDealInfo());
+
+        TextView disclaimer =new TextView(this);
+        dealName=(TextView)findViewById(R.id.disclaimer);
+        dealName.setText(display.getDisclaimer());
+
         TextView dealOrigPrice =new TextView(this);
         dealName=(TextView)findViewById(R.id.dealOrigPrice);
         dealName.setText("Original Price: $" + String.format("%.2f", display.getOriginalPrice()));
