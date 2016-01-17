@@ -56,25 +56,28 @@ public class StoreLister {
         query += "&limit=" + displimit;
         query += "&orderby=" + orderby;
 
-        String jsoncontent = null;
+        String jsoncontent = "";
 
-        URL url = null;
         HttpURLConnection urc = null;
         try {
-            url = new URL(query);
+            Log.e("StoreLister Updated", "Running under try");
+            URL url = new URL(query);
             urc = (HttpURLConnection) url.openConnection();
             InputStream in = urc.getInputStream();
             InputStreamReader isw = new InputStreamReader(in);
-
+            Log.e("StoreLister Updated", "After ISW");
             int data = isw.read();
             while (data != -1) {
                 char current = (char) data;
                 data = isw.read();
+                Log.e("StoreLister Updated", Character.toString(current));
                 jsoncontent += current;
             }
         } catch (MalformedURLException e1) {
+            Log.e("StoreLister Updated", "Malformed");
             e1.printStackTrace();
         } catch (IOException e1) {
+            Log.e("StoreLister Updated", "IO");
             e1.printStackTrace();
         }
         catch (Exception e) {
@@ -123,7 +126,7 @@ public class StoreLister {
         }
 
 
-        Log.i("StoreLister Updated", jsoncontent);
+        Log.e("StoreLister Updated", jsoncontent);
         StoreContent.createList(stores);
 
     }
@@ -157,16 +160,16 @@ public class StoreLister {
         while (dets.hasMoreTokens()) {
             storedetails.add(dets.nextToken());
         }
-        String name = null;
-        String address = null;
+        String name = "";
+        String address = "";
         int totalDeals = 0;
-        String phone = null;
+        String phone = "";
         double distance = 0;
         int categoryID = 0;
         int subcategoryID = 0;
-        String state = null;
-        String city = null;
-        String zip = null;
+        String state = "";
+        String city = "";
+        String zip = "";
 
         for (String j: storedetails) {
             if (j.startsWith("\"name\":\""))
@@ -201,11 +204,11 @@ public class StoreLister {
         while (dets.hasMoreTokens()) {
             details.add(dets.nextToken());
         }
-        String name = null;
-        String dealTitle = null;
-        String disclaimer = null;
-        String dealInfo = null;
-        String expirationDate = null;
+        String name = "";
+        String dealTitle = "";
+        String disclaimer = "";
+        String dealInfo = "";
+        String expirationDate = "";
         double originalPrice = 0;
         double dealPrice = 0;
         for (String j: details) {

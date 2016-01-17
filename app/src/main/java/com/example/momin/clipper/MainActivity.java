@@ -72,8 +72,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         setContentView(R.layout.activity_main);
 
-//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//        StrictMode.setThreadPolicy(policy);
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
 
         // Set up the action bar.
@@ -142,9 +142,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         }
         Log.e("new implementation test", "before");
          if(mLastLocation != null) {
-             new BackgroundStoreLister().doInBackground();
-             Log.e("new implementation test", "before, in");
-//           StoreLister.generateListing(mLastLocation);
+//             new BackgroundStoreLister().doInBackground();
+//             Log.e("new implementation test", "before, in");
+             StoreLister.generateListing(mLastLocation);
          }
 
     }
