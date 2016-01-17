@@ -21,7 +21,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/dealInfo"
-        android:singleLine="false"
+        android:lines="4"
         android:gravity="left"/>
 
     <TextView
@@ -30,7 +30,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/disclaimer"
-        android:singleLine="false"
+        android:lines="4"
         android:gravity="left"/>
 
     <TextView
