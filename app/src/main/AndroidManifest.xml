@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-
-    package="com.example.momin.clipper" >
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-
     package="com.example.momin.clipper">
 
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    package="com.example.momin.clipper">
     <application
         android:allowBackup="true"
         android:icon="@drawable/clipper"
@@ -29,7 +26,10 @@
         <activity
             android:name=".StoreActivity"
             android:label="@string/title_activity_store"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActionBrowse"
+            android:label="@string/title_activity_action_browse"></activity>
     </application>
 
 </manifest>

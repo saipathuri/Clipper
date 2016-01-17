@@ -3,7 +3,7 @@ package com.example.momin.clipper;
 /**
  * Created by Owner on 1/16/16.
  */
-public class Coupon {
+public class Coupon implements Comparable {
 
     private String name;
     private String dealTitle;
@@ -14,8 +14,9 @@ public class Coupon {
     private double dealPrice;
     private double dealSavings;
     private double dealDiscountPercent;
+    private String url;
 
-    public Coupon(String name, String dealTitle, String disclaimer, String dealInfo, String expirationDate, double originalPrice, double dealPrice) {
+    public Coupon(String name, String dealTitle, String disclaimer, String dealInfo, String expirationDate, double originalPrice, double dealPrice, String url) {
         this.name = name;
         this.dealTitle = dealTitle;
         this.disclaimer = disclaimer;
@@ -23,6 +24,7 @@ public class Coupon {
         this.expirationDate = expirationDate;
         this.originalPrice = originalPrice;
         this.dealPrice = dealPrice;
+        this.url = url;
     }
 
 
@@ -59,11 +61,24 @@ public class Coupon {
         return dealInfo;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
     public String getExpirationDate() {
         return expirationDate;
     }
 
 
+    @Override
+    public int compareTo(Object o) {
+        Coupon c = (Coupon) o;
+        if(this.getDealSavings() > ((Coupon) o).getDealSavings())
+            return 1;
+        else if(this.getDealSavings() == ((Coupon) o).getDealSavings())
+            return 0;
+        else
+            return -1;
 
-
+    }
 }

@@ -233,6 +233,7 @@ public class StoreLister {
         String expirationDate = "";
         double originalPrice = 0;
         double dealPrice = 0;
+        String url = "";
         for (String j: details) {
             if (j.startsWith("\"name\":\""))
                 name = j.substring(8, j.length()-1);
@@ -248,9 +249,13 @@ public class StoreLister {
                 originalPrice = Double.parseDouble(j.substring(21, j.length()-1));
             if (j.startsWith("\"dealPrice\":\""))
                 dealPrice = Double.parseDouble(j.substring(13, j.length()-1));
+            if (j.startsWith("\"URL\":\"")) {
+                url = j.substring(7, j.length() - 1);
+                url = url.replace("\\","");
+            }
         }
 
-        Coupon coupon = new Coupon(name,dealTitle,disclaimer,dealInfo,expirationDate,originalPrice,dealPrice);
+        Coupon coupon = new Coupon(name,dealTitle,disclaimer,dealInfo,expirationDate,originalPrice,dealPrice,url);
         return coupon;
     }
 
