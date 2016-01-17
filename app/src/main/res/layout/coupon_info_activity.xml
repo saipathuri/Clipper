@@ -39,11 +39,11 @@
         android:id="@+id/dealMoneySaved"
         android:gravity="center"/>
 
-    <TextView
-        android:layout_width="match_parent"
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/loadCoupon"
+        android:text="Go To Coupon"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/dealURL"
-         />
+        android:layout_gravity="center_horizontal"/>
 </LinearLayout>
