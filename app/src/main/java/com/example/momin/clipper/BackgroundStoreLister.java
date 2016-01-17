@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.example.momin.clipper.Coupon;
 import com.example.momin.clipper.Store;
+import com.example.momin.clipper.dummy.CouponContent2;
 import com.example.momin.clipper.dummy.StoreContent;
 
 import org.json.JSONObject;
@@ -105,6 +106,7 @@ public class BackgroundStoreLister extends AsyncTask<Location, Void, Integer> {
             Log.e("After multiple coupon merge", Integer.toString(stores.size()));
             Log.e("new implementation", "before createList call");
             StoreContent.createList(stores);
+            CouponContent2.createList(stores);
 
         } catch (Exception e) {
             e.printStackTrace();

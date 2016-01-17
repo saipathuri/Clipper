@@ -239,7 +239,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             if (position%2 == 0)
                 return ItemFragment.newInstance(position + 1);
             else
-                return PlaceholderFragment.newInstance(position + 1);
+                return TopDealsFragment.newInstance(position + 1);
         }
 
         @Override

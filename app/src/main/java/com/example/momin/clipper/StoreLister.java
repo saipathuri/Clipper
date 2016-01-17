@@ -151,8 +151,6 @@ public class StoreLister {
 
 
         Log.e("Name of thing", stores.get(0).getName());
-        StoreContent.createList(stores);
-        CouponContent2.createList(allCoupons);
 
     }
 

@@ -2,13 +2,13 @@ package com.example.momin.clipper;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 
 import com.example.momin.clipper.dummy.CouponContent2;
 
@@ -18,7 +18,7 @@ import com.example.momin.clipper.dummy.CouponContent2;
  * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
  * interface.
  */
-public class TopDealsFragment extends android.app.Fragment{
+public class TopDealsFragment extends Fragment{
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
@@ -38,7 +38,7 @@ public class TopDealsFragment extends android.app.Fragment{
     public static TopDealsFragment newInstance(int columnCount) {
         TopDealsFragment fragment = new TopDealsFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
+        args.putInt(ARG_COLUMN_COUNT, 1);
         fragment.setArguments(args);
         return fragment;
     }
