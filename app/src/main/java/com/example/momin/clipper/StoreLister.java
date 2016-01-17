@@ -99,6 +99,8 @@ public class StoreLister {
             }
         }
 
+        StoreContent.createList(stores);
+
     }
 
     private static String readStream(InputStream is) throws IOException {
