@@ -1,5 +1,8 @@
 package com.example.momin.clipper.dummy;
 
+import android.widget.Toast;
+
+import com.example.momin.clipper.MainActivity;
 import com.example.momin.clipper.StoreLister;
 
 import java.util.ArrayList;
@@ -19,32 +22,40 @@ public class StoreContent {
     /**
      * An array of sample (dummy) items.
      */
-    public static final List<DummyItem> ITEMS = new ArrayList<DummyItem>();
+    public static final List<StoreItem> ITEMS = new ArrayList<StoreItem>();
 
     /**
      * A map of sample (dummy) items, by ID.
      */
-    public static final Map<String, DummyItem> ITEM_MAP = new HashMap<String, DummyItem>();
+    public static final Map<String, StoreItem> ITEM_MAP = new HashMap<String, StoreItem>();
 
     private static final int COUNT = 25;
 
+//    static {
+//        // Add some sample items.
+//        for (int i = 1; i <= COUNT; i++) {
+//            addItem(createDummyItem(i));
+//        }
+//    }
+
     public static void createList(ArrayList<Store> stores){
 
-        for(int i = 1; i <= stores.size(); i++){
+        for(int i = 1; i <= stores.size()+1; i++){
             String title = stores.get(i-1).getName();
-            String distance = String.format("%.2f", Double.toString(stores.get(i-1).getDistance()));
+            String distance = String.format("%.2f", Double.toString(stores.get(i - 1).getDistance()));
             String subTitle = distance + " | # of Deals: " + stores.get(i-1).getTotalDeals();
-            addItem(new DummyItem(Integer.toString(i), title, subTitle));
+            StoreItem item = new StoreItem(String.valueOf(i), title, subTitle);
+            addItem(item);
         }
     }
 
-    private static void addItem(DummyItem item) {
+    private static void addItem(StoreItem item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.id, item);
     }
 
-    static DummyItem createDummyItem(int position) {
-        return new DummyItem(String.valueOf(position), "Item " + position, makeDetails(position));
+    static StoreItem createDummyItem(int position) {
+        return new StoreItem(String.valueOf(position), "Item " + position, makeDetails(position));
     }
 
     private static String makeDetails(int position) {
@@ -59,12 +70,12 @@ public class StoreContent {
     /**
      * A dummy item representing a piece of content.
      */
-    public static class DummyItem {
+    public static class StoreItem {
         public final String id;
         public final String content;
         public final String details;
 
-        public DummyItem(String id, String content, String details) {
+        public StoreItem(String id, String content, String details) {
             this.id = id;
             this.content = content;
             this.details = details;

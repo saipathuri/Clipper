@@ -21,7 +21,7 @@ public class StoreActivity extends AppCompatActivity implements StoreSpecificCou
         fragmentTransaction.add(R.id.lists, sc,"Hello");
         fragmentTransaction.commit();
     }
-    public void onListFragmentInteraction(StoreContent.DummyItem item) {
+    public void onListFragmentInteraction(StoreContent.StoreItem item) {
         Intent intent = new Intent(this, CouponInfo.class);
         CouponInfo.display = item.id;
         startActivity(intent);

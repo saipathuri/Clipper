@@ -124,15 +124,17 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     public void onConnected(Bundle connectionHint) {
         // Connected to Google Play services!
         // The good stuff goes here.
-        int permissionCheck = ContextCompat.checkSelfPermission(this,
+        int permissionCheckLocation = ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION);
 
-        if(permissionCheck != PackageManager.PERMISSION_GRANTED){
+        int permissionCheckNetwork = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_NETWORK_STATE);
+        if(permissionCheckLocation != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     1);
         }
-        else if(permissionCheck == PackageManager.PERMISSION_GRANTED){
+        else if(permissionCheckLocation == PackageManager.PERMISSION_GRANTED){
             mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                     mGoogleApiClient);
         }
@@ -199,7 +201,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     }
 
     @Override
-    public void onListFragmentInteraction(StoreContent.DummyItem item) {
+    public void onListFragmentInteraction(StoreContent.StoreItem item) {
         Intent intent = new Intent(this, StoreActivity.class);
         CouponInfo.display = item.id;
         startActivity(intent);

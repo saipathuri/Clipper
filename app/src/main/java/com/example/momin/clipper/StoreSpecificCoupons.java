@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.momin.clipper.dummy.StoreContent;
-import com.example.momin.clipper.dummy.StoreContent.DummyItem;
+import com.example.momin.clipper.dummy.StoreContent.StoreItem;
 
 /**
  * A fragment representing a list of Items.
@@ -101,6 +101,6 @@ public class StoreSpecificCoupons extends android.app.Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyItem item);
+        void onListFragmentInteraction(StoreItem item);
     }
 }
