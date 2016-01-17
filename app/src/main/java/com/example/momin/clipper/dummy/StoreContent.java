@@ -1,8 +1,14 @@
 package com.example.momin.clipper.dummy;
 
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.momin.clipper.ItemFragment;
 import com.example.momin.clipper.MainActivity;
+import com.example.momin.clipper.MyItemRecyclerViewAdapter;
+import com.example.momin.clipper.R;
 import com.example.momin.clipper.StoreLister;
 
 import java.util.ArrayList;
@@ -39,14 +45,18 @@ public class StoreContent {
 //    }
 
     public static void createList(ArrayList<Store> stores){
-
-        for(int i = 1; i <= stores.size()+1; i++){
-            String title = stores.get(i-1).getName();
-            String distance = String.format("%.2f", Double.toString(stores.get(i - 1).getDistance()));
-            String subTitle = distance + " | # of Deals: " + stores.get(i-1).getTotalDeals();
-            StoreItem item = new StoreItem(String.valueOf(i), title, subTitle);
-            addItem(item);
-        }
+        Log.e("CRASh!!!", Integer.toString(stores.size()));
+        if(stores.size() != 0) {
+            Log.e("CRASh!!!!", "null");
+            for (int i = 1; i <= stores.size() + 1; i++) {
+                String title = stores.get(i - 1).getName();
+                String distance = String.format("%.2f", Double.toString(stores.get(i - 1).getDistance()));
+                String subTitle = distance + " | # of Deals: " + stores.get(i - 1).getTotalDeals();
+                StoreItem item = new StoreItem(String.valueOf(i), title, subTitle);
+                addItem(item);
+            }
+        }else
+            addItem(new StoreItem("1", "Can't refresh internet", " "));
     }
 
     private static void addItem(StoreItem item) {
