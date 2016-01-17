@@ -1,6 +1,7 @@
 package com.example.momin.clipper;
 
 import android.annotation.SuppressLint;
+import android.location.Location;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -24,14 +25,15 @@ import java.util.StringTokenizer;
 /**
  * Created by MLH-User on 1/16/2016.
  */
-public class BackgroundStoreLister extends AsyncTask<String, Void, JSONObject> {
+public class BackgroundStoreLister extends AsyncTask<Location, Void, Integer> {
     @SuppressLint("LongLogTag")
     @Override
-    protected JSONObject doInBackground(String... params) {
+    protected Integer doInBackground(Location... params) {
         try {
-
-            double lat = 38.8871;
-            double lon = -77.0932;
+            double mLatitude = params[0].getLatitude();
+            double mLongitude = params[0].getLongitude();
+            double lat = mLatitude;
+            double lon = mLongitude;
 
             int mileradius = 2;
             int displimit = 1000;
@@ -105,7 +107,7 @@ public class BackgroundStoreLister extends AsyncTask<String, Void, JSONObject> {
             StoreContent.createList(stores);
 
         } catch (Exception e) {
-            return null;
+            e.printStackTrace();
         }
         return null;
     }
