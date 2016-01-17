@@ -42,7 +42,7 @@ public class StoreLister {
 //    }
 
     public static void generateListing(Location l) {
-        
+
 
         double lat = l.getLatitude();
         double lon = l.getLongitude();
@@ -62,48 +62,48 @@ public class StoreLister {
 
         URL url = null;
         HttpURLConnection urc = null;
-        try {
-            url = new URL(query);
-            urc = (HttpURLConnection) url.openConnection();
-            InputStream in = new BufferedInputStream(urc.getInputStream());
-            jsoncontent = readStream(in);
-            System.out.println(jsoncontent);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        finally {
-            urc.disconnect();
-        }
-
 //        try {
-//            Log.e("StoreLister Updated", "Running under try");
-//            URL url = new URL(query);
+//            url = new URL(query);
 //            urc = (HttpURLConnection) url.openConnection();
-//            InputStream in = urc.getInputStream();
-//            InputStreamReader isw = new InputStreamReader(in);
-//            Log.e("StoreLister Updated", "After ISW");
-//            int data = isw.read();
-//            while (data != -1) {
-//                char current = (char) data;
-//                data = isw.read();
-//                Log.e("StoreLister Updated", Character.toString(current));
-//                jsoncontent += current;
-//            }
-//        } catch (MalformedURLException e1) {
-//            Log.e("StoreLister Updated", "Malformed");
-//            e1.printStackTrace();
-//        } catch (IOException e1) {
-//            Log.e("StoreLister Updated", "IO");
-//            e1.printStackTrace();
-//        }
-//        catch (Exception e) {
+//            InputStream in = new BufferedInputStream(urc.getInputStream());
+//            jsoncontent = readStream(in);
+//            System.out.println(jsoncontent);
+//        } catch (MalformedURLException e) {
 //            e.printStackTrace();
-//        } finally {
+//        }
+//        catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        finally {
 //            urc.disconnect();
 //        }
+
+        try {
+            Log.e("StoreLister Updated", "Running under try");
+            url = new URL(query);
+            urc = (HttpURLConnection) url.openConnection();
+            InputStream in = urc.getInputStream();
+            InputStreamReader isw = new InputStreamReader(in);
+            Log.e("StoreLister Updated", "After ISW");
+            int data = isw.read();
+            while (data != -1) {
+                char current = (char) data;
+                data = isw.read();
+                Log.e("StoreLister Updated", Character.toString(current));
+                jsoncontent += current;
+            }
+        } catch (MalformedURLException e1) {
+            Log.e("StoreLister Updated", "Malformed");
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            Log.e("StoreLister Updated", "IO");
+            e1.printStackTrace();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            urc.disconnect();
+        }
 //        try {
 //
 //        } catch (MalformedURLException e) {
