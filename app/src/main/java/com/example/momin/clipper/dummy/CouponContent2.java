@@ -1,5 +1,7 @@
 package com.example.momin.clipper.dummy;
 
+import android.support.v7.widget.RecyclerView;
+
 import com.example.momin.clipper.Coupon;
 import com.example.momin.clipper.Store;
 
@@ -20,6 +22,8 @@ public class CouponContent2 {
      */
     public static final Map<String, CouponItem2> ITEM_MAP = new HashMap<String, CouponItem2>();
 
+    public static RecyclerView r = null;
+
     public static void createList(ArrayList<Store> stores)
     {
         ITEMS.clear();
@@ -36,6 +40,7 @@ public class CouponContent2 {
             }
             Collections.sort(ITEMS);
             Collections.reverse(ITEMS);
+            r.getAdapter().notifyDataSetChanged();
         }
         else if(stores.size() == 0){
             addItem(new CouponItem2("666", "No stores/coupons in your area", "", null));

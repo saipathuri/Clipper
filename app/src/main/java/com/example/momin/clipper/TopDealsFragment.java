@@ -67,6 +67,7 @@ public class TopDealsFragment extends Fragment{
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
             recyclerView.setAdapter(new MyItemRecyclerViewAdapter3(CouponContent2.ITEMS, mListener));
+            CouponContent2.r = recyclerView;
         }
         return view;
     }
