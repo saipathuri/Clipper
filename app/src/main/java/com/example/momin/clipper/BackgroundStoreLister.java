@@ -22,6 +22,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.StringTokenizer;
 
 /**
@@ -48,7 +49,7 @@ public class BackgroundStoreLister extends AsyncTask<Location, Void, Integer> {
                 query += "&mileradius=" + mileradius;
                 query += "&limit=" + displimit;
                 query += "&orderby=" + orderby;
-
+                System.out.println(query);
                 String jsoncontent = null;
 
                 URL url = null;
@@ -108,6 +109,7 @@ public class BackgroundStoreLister extends AsyncTask<Location, Void, Integer> {
 
                 Log.e("After multiple coupon merge", Integer.toString(stores.size()));
                 Log.e("new implementation", "before createList call");
+
                 Collections.sort(stores);
                 StoreContent.createList(stores);
                 CouponContent2.createList(allCoupons);
