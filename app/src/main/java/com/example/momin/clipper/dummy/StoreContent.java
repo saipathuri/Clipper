@@ -48,9 +48,9 @@ public class StoreContent {
         if(ITEMS.size() < 1 && stores.size() > 0) {
             for (int i = 1; i <= stores.size(); i++) {
                 String title = stores.get(i - 1).getName();
-                String distance = String.format("double: %.2f", stores.get(i - 1).getDistance());
+                String distance = String.format("%.2f", stores.get(i - 1).getDistance());
                 String subTitle = distance + " | # of Deals: " + stores.get(i - 1).getTotalDeals();
-                StoreItem item = new StoreItem(String.valueOf(i), title, subTitle, stores.get(i-1));
+                StoreItem item = new StoreItem(distance + " mi.", title, subTitle, stores.get(i-1));
                 addItem(item);
             }
         }
