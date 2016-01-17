@@ -46,9 +46,7 @@ public class CouponInfo extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ActionBrowse.class);
-                intent.putExtra("URL", display.getUrl());
-                startActivity(intent);
+
             }
                                });
 

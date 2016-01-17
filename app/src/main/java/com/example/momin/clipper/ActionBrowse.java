@@ -22,6 +22,8 @@ public class ActionBrowse extends Activity {
         websettings.setJavaScriptEnabled(true);
         websettings.setBuiltInZoomControls(true);
         websettings.setPluginState(WebSettings.PluginState.ON);
+        websettings.setRenderPriority(WebSettings.RenderPriority.HIGH);
+        websettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
 
         webview.loadUrl(url);
 
