@@ -18,6 +18,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -71,8 +72,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
         setContentView(R.layout.activity_main);
 
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
+//        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+//        StrictMode.setThreadPolicy(policy);
 
 
         // Set up the action bar.
@@ -139,8 +140,13 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                     mGoogleApiClient);
         }
-         if(mLastLocation != null)
-             StoreLister.generateListing(mLastLocation);
+        Log.e("new implementation test", "before");
+         if(mLastLocation != null) {
+             new BackgroundStoreLister().doInBackground();
+             Log.e("new implementation test", "before, in");
+//           StoreLister.generateListing(mLastLocation);
+         }
+
     }
 
     private void sendLocation(Location l){

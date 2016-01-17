@@ -122,6 +122,7 @@ public class StoreLister {
             }
         }
 
+
         Log.i("StoreLister Updated", jsoncontent);
         StoreContent.createList(stores);
 
