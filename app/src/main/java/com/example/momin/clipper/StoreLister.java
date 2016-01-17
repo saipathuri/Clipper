@@ -47,7 +47,7 @@ public class StoreLister {
         String lat = Double.toString(l.getLatitude());
         String lon = Double.toString(l.getLongitude());
 
-        String mileradius = Integer.toString(2);
+        String mileradius = Integer.toString(10);
         String displimit = Integer.toString(1000);
         String orderby = "radius";
 
@@ -58,6 +58,8 @@ public class StoreLister {
         query += "&mileradius=" + mileradius;
         query += "&limit=" + displimit;
         query += "&orderby=" + orderby;
+
+        System.out.println(query);
 
         String jsoncontent = "";
 

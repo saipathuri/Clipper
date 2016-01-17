@@ -45,7 +45,7 @@ public class StoreContent {
 //    }
 
     public static void createList(ArrayList<Store> stores){
-        if(stores.size() != 0) {
+        if(ITEMS.size() < 1 && stores.size() > 0) {
             for (int i = 1; i <= stores.size(); i++) {
                 String title = stores.get(i - 1).getName();
                 String distance = String.format("double: %.2f", stores.get(i - 1).getDistance());
@@ -53,8 +53,10 @@ public class StoreContent {
                 StoreItem item = new StoreItem(String.valueOf(i), title, subTitle);
                 addItem(item);
             }
-        }else
-            addItem(new StoreItem("1", "Can't refresh internet", " "));
+        }
+        else if(stores.size() == 0){
+            addItem(new StoreItem("666", "No stores/coupons in your area", ""));
+        }
     }
 
     private static void addItem(StoreItem item) {
