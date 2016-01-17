@@ -18,7 +18,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.momin.clipper.dummy.CouponContent;
+import com.example.momin.clipper.dummy.CouponContent2;
 import com.example.momin.clipper.dummy.StoreContent;
 import com.google.android.gms.common.*;
 
@@ -38,7 +38,7 @@ import com.google.android.gms.location.*;
 import android.os.StrictMode;
 
 public class MainActivity extends ActionBarActivity implements ActionBar.TabListener,
-        ItemFragment.OnListFragmentInteractionListener, ConnectionCallbacks, OnConnectionFailedListener {
+        ItemFragment.OnListFragmentInteractionListener, ConnectionCallbacks, OnConnectionFailedListener, TopDealsFragment.OnListFragmentInteractionListener {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -212,9 +212,16 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     public void onListFragmentInteraction(StoreContent.StoreItem item) {
         Intent intent = new Intent(this, StoreActivity.class);
        // CouponInfo.display = item.id;
-        CouponContent.createList(item.store.getCoupons());
+        CouponContent2.createList(item.store.getCoupons());
         startActivity(intent);
     }
+
+
+    @Override
+    public void onListFragmentInteraction(CouponContent2.CouponItem2 item) {
+
+    }
+
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.

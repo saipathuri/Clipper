@@ -10,6 +10,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
+import com.example.momin.clipper.dummy.CouponContent;
+import com.example.momin.clipper.dummy.CouponContent2;
 import com.example.momin.clipper.dummy.StoreContent;
 import com.example.momin.clipper.dummy.StoreContent.*;
 
@@ -150,6 +152,7 @@ public class StoreLister {
 
         Log.e("Name of thing", stores.get(0).getName());
         StoreContent.createList(stores);
+        CouponContent2.createList(allCoupons);
 
     }
 
@@ -246,7 +249,7 @@ public class StoreLister {
             if (j.startsWith("\"expirationDate\":\""))
                 expirationDate = j.substring(18, j.length()-1);
             if (j.startsWith("\"dealOriginalPrice\":\""))
-                originalPrice = Double.parseDouble(j.substring(21, j.length()-1));
+                originalPrice = Double.parseDouble(j.substring(21, j.length() - 1));
             if (j.startsWith("\"dealPrice\":\""))
                 dealPrice = Double.parseDouble(j.substring(13, j.length()-1));
             if (j.startsWith("\"URL\":\"")) {

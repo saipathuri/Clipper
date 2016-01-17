@@ -13,7 +13,6 @@ public class CouponInfo extends AppCompatActivity {
        // CouponView sv = new CouponView(this, display);
         setContentView(R.layout.coupon_info_activity);
         TextView t=new TextView(this);
-
         t=(TextView)findViewById(R.id.dealName);
         t.setText(display.getDealTitle());
 
