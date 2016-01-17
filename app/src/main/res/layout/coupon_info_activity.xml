@@ -38,4 +38,12 @@
         android:text="Large Text"
         android:id="@+id/dealMoneySaved"
         android:gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Large Text"
+        android:id="@+id/dealURL"
+         />
 </LinearLayout>
