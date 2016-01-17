@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 
 import com.example.momin.clipper.dummy.StoreContent;
 
-public class StoreActivity extends Activity implements StoreSpecificCoupons.OnListFragmentInteractionListener {
+public class StoreActivity extends AppCompatActivity implements StoreSpecificCoupons.OnListFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
