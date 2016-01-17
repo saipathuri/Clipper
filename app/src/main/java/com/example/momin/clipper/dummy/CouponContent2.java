@@ -24,25 +24,21 @@ public class CouponContent2 {
 
     public static RecyclerView r = null;
 
-    public static void createList(ArrayList<Store> stores)
+    public static void createList(ArrayList<Coupon> allCoupons)
     {
         ITEMS.clear();
         ITEM_MAP.clear();
-        if(stores.size() > 0) {
-            for (Store x : stores) {
-                ArrayList<Coupon> coupons = x.getCoupons();
-                 for (int i = 1; i < coupons.size(); i++) {
-                     String title = x.getName() + ": " + coupons.get(i - 1).getDealTitle();
-                     CouponItem2 item = new CouponItem2("$" + String.format("%.2f", coupons.get(i-1).getDealSavings()),
-                             title, "", coupons.get(i - 1));
-                     addItem(item);
-                 }
+        if(allCoupons.size() > 0) {
+            Collections.sort(allCoupons);
+            Collections.reverse(allCoupons);
+            for (int i =0; i<allCoupons.size();i++) {
+                addItem(new CouponItem2("$"+String.format("%.2f",allCoupons.get(i).getDealSavings()),
+                        allCoupons.get(i).getName() + ": " + allCoupons.get(i).getDealTitle(),"",
+                        allCoupons.get(i)));
             }
-            Collections.sort(ITEMS);
-            Collections.reverse(ITEMS);
             r.getAdapter().notifyDataSetChanged();
         }
-        else if(stores.size() == 0){
+        else if(allCoupons.size() == 0){
             addItem(new CouponItem2("404", "No stores/coupons in your area", "", null));
         }
 
