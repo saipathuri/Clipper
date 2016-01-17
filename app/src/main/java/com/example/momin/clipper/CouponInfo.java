@@ -23,15 +23,15 @@ public class CouponInfo extends AppCompatActivity {
 
         TextView dealOrigPrice =new TextView(this);
         dealName=(TextView)findViewById(R.id.dealOrigPrice);
-        dealName.setText("Original Price: $" + display.getOriginalPrice());
+        dealName.setText("Original Price: $" + String.format("%.2f",Double.toString(display.getOriginalPrice())));
 
         TextView dealNewPrice =new TextView(this);
         dealName=(TextView)findViewById(R.id.dealNewPrice);
-        dealName.setText("Deal Price: $" + display.getDealPrice());
+        dealName.setText("Deal Price: $" + String.format("%.2f",Double.toString(display.getDealPrice())));
 
         TextView dealMoneySaved = new TextView(this);
         dealName=(TextView)findViewById(R.id.dealMoneySaved);
-        dealName.setText("Money saved: $" + (display.getDealSavings()));
+        dealName.setText("Money saved: $" + String.format("%.2f",Double.toString((display.getDealSavings()))));
     }
 
 

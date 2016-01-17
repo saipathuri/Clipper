@@ -33,7 +33,7 @@ public class CouponContent2 {
                 ArrayList<Coupon> coupons = x.getCoupons();
                  for (int i = 1; i < coupons.size(); i++) {
                      String title = x.getName() + ": " + coupons.get(i - 1).getDealTitle();
-                     CouponItem2 item = new CouponItem2("" + coupons.get(i-1).getDealSavings(),
+                     CouponItem2 item = new CouponItem2("$" + String.format("%.2f", Double.toString(coupons.get(i-1).getDealSavings())),
                              title, "", coupons.get(i - 1));
                      addItem(item);
                  }
@@ -43,7 +43,7 @@ public class CouponContent2 {
             r.getAdapter().notifyDataSetChanged();
         }
         else if(stores.size() == 0){
-            addItem(new CouponItem2("666", "No stores/coupons in your area", "", null));
+            addItem(new CouponItem2("404", "No stores/coupons in your area", "", null));
         }
 
     }
