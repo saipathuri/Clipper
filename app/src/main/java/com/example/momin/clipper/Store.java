@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * Created by Owner on 1/16/16.
  */
-public class Store {
+public class Store implements Comparable{
 
     private String name;
     private String address;
@@ -83,5 +83,15 @@ public class Store {
 
     public int getSubcategoryID() {
         return subcategoryID;
+    }
+
+    public int compareTo(Object o){
+        Store s = (Store) o;
+        if(this.getDistance() > s.getDistance())
+            return 1;
+        else if(this.getDistance() == s.getDistance())
+            return 0;
+        else
+            return -1;
     }
 }

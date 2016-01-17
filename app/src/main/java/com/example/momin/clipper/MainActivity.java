@@ -211,7 +211,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     @Override
     public void onListFragmentInteraction(StoreContent.StoreItem item) {
         Intent intent = new Intent(this, StoreActivity.class);
-       // CouponInfo.display = item.id;
+        StoreActivity.store = item.store;
         CouponContent.createList(item.store.getCoupons());
         startActivity(intent);
     }

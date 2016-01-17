@@ -26,7 +26,7 @@ public class CouponContent{
         if(coupons.size() > 0) {
             for (int i = 1; i <= coupons.size(); i++) {
                 String title = coupons.get(i - 1).getDealTitle();
-                CouponItem item = new CouponItem(String.valueOf(i), title, "", coupons.get(i-1));
+                CouponItem item = new CouponItem("  ~", title, "", coupons.get(i-1));
                 addItem(item);
             }
         }

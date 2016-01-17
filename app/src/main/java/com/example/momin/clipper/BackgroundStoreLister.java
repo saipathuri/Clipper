@@ -20,6 +20,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.StringTokenizer;
 
 /**
@@ -29,86 +30,88 @@ public class BackgroundStoreLister extends AsyncTask<Location, Void, Integer> {
     @SuppressLint("LongLogTag")
     @Override
     protected Integer doInBackground(Location... params) {
-        try {
-            double mLatitude = params[0].getLatitude();
-            double mLongitude = params[0].getLongitude();
-            double lat = mLatitude;
-            double lon = mLongitude;
-
-            int mileradius = 20;
-            int displimit = 1000;
-            String orderby = "radius";
-
-            String query = "http://api.8coupons.com/v1/getdeals?key=7706d583294296431e81abac1b84d57a3ff88f5b710536108616ae1a0fa4b64919e2fc523bd3a1bdbbab66947a0d67a5";
-            query += "&lat=" + lat;
-            query += "&lon=" + lon;
-            query += "&mileradius=" + mileradius;
-            query += "&limit=" + displimit;
-            query += "&orderby=" + orderby;
-
-            String jsoncontent = null;
-
-            URL url = null;
+        if(StoreContent.ITEMS.size() == 0)
             try {
-                url = new URL(query);
-                Log.e("new implementation", "try url");
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-                Log.e("new implementation", "catch url");
-            }
-            HttpURLConnection urc = null;
-            try {
-                urc = (HttpURLConnection) url.openConnection();
-                Log.e("new implementation", "try urc");
-            } catch (IOException e) {
-                e.printStackTrace();
-                Log.e("new implementation", "catch urc");
-            }
+                double mLatitude = params[0].getLatitude();
+                double mLongitude = params[0].getLongitude();
+                double lat = mLatitude;
+                double lon = mLongitude;
 
-            try {
-                InputStream in = new BufferedInputStream(urc.getInputStream());
-                jsoncontent = readStream(in);
-                Log.e("new implementation", "try input stream");
-            } catch (IOException e) {
-                e.printStackTrace();
-                Log.e("new implementation", "catch input stream");
-            } finally {
-                urc.disconnect();
-            }
-            Log.e("Info", jsoncontent);
+                int mileradius = 5;
+                int displimit = 1000;
+                String orderby = "radius";
 
-            ArrayList<String> storeinfo = separateDeals(jsoncontent);
-            System.out.println(storeinfo.get(1));
-            ArrayList<Store> stores = new ArrayList<Store>();
-            ArrayList<Coupon> allCoupons = new ArrayList<Coupon>();
-            for (int i=0; i< storeinfo.size(); i++) {
-                stores.add(generateStore(storeinfo.get(i)));
-                allCoupons.add(generateCoupon(storeinfo.get(i)));
-            }
+                String query = "http://api.8coupons.com/v1/getdeals?key=d4aa04ccac274d92eb18748cd60271e1820913dde745898b18ac4219e1e19d7496f3e7c85a1c34d0b2a0cc3bfa6dff85";
+                query += "&lat=" + lat;
+                query += "&lon=" + lon;
+                query += "&mileradius=" + mileradius;
+                query += "&limit=" + displimit;
+                query += "&orderby=" + orderby;
 
-            Log.e("stores 0", stores.get(0).getAddress());
-            Log.e("stores 1", stores.get(1).getAddress());
-            System.out.println(stores.get(0).getAddress());
-            System.out.println(stores.get(1).getAddress());
+                String jsoncontent = null;
 
-            stores.remove(0);
-            allCoupons.remove(0);
+                URL url = null;
+                try {
+                    url = new URL(query);
+                    Log.e("new implementation", "try url");
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                    Log.e("new implementation", "catch url");
+                }
+                HttpURLConnection urc = null;
+                try {
+                    urc = (HttpURLConnection) url.openConnection();
+                    Log.e("new implementation", "try urc");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.e("new implementation", "catch urc");
+                }
 
-            for (Store s: stores) {
-                String name = s.getName();
-                for (Coupon c: allCoupons) {
-                    if (name.equals(c.getName())) {
-                        s.addCoupon(c);
+                try {
+                    InputStream in = new BufferedInputStream(urc.getInputStream());
+                    jsoncontent = readStream(in);
+                    Log.e("new implementation", "try input stream");
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    Log.e("new implementation", "catch input stream");
+                } finally {
+                    urc.disconnect();
+                }
+                Log.e("Info", jsoncontent);
+
+                ArrayList<String> storeinfo = separateDeals(jsoncontent);
+                System.out.println(storeinfo.get(1));
+                ArrayList<Store> stores = new ArrayList<Store>();
+                ArrayList<Coupon> allCoupons = new ArrayList<Coupon>();
+                for (int i=0; i< storeinfo.size(); i++) {
+                    stores.add(generateStore(storeinfo.get(i)));
+                    allCoupons.add(generateCoupon(storeinfo.get(i)));
+                }
+
+                Log.e("stores 0", stores.get(0).getAddress());
+                Log.e("stores 1", stores.get(1).getAddress());
+                System.out.println(stores.get(0).getAddress());
+                System.out.println(stores.get(1).getAddress());
+
+                stores.remove(0);
+                allCoupons.remove(0);
+
+                for (Store s: stores) {
+                    String name = s.getName();
+                    for (Coupon c: allCoupons) {
+                        if (name.equals(c.getName())) {
+                            s.addCoupon(c);
+                        }
                     }
                 }
-            }
-            Log.e("After multiple coupon merge", Integer.toString(stores.size()));
-            Log.e("new implementation", "before createList call");
-            StoreContent.createList(stores);
+                Log.e("After multiple coupon merge", Integer.toString(stores.size()));
+                Log.e("new implementation", "before createList call");
+                Collections.sort(stores);
+                StoreContent.createList(stores);
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         return null;
     }
     private static String readStream(InputStream is) throws IOException {
