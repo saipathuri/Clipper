@@ -193,6 +193,7 @@ public class BackgroundStoreLister extends AsyncTask<String, Void, JSONObject> {
         String expirationDate = null;
         double originalPrice = 0;
         double dealPrice = 0;
+        String url = "";
         for (String j: details) {
             if (j.startsWith("\"name\":\""))
                 name = j.substring(8, j.length()-1);
@@ -205,12 +206,16 @@ public class BackgroundStoreLister extends AsyncTask<String, Void, JSONObject> {
             if (j.startsWith("\"expirationDate\":\""))
                 expirationDate = j.substring(18, j.length()-1);
             if (j.startsWith("\"dealOriginalPrice\":\""))
-                originalPrice = Double.parseDouble(j.substring(21, j.length()-1));
+                originalPrice = Double.parseDouble(j.substring(21, j.length() - 1));
             if (j.startsWith("\"dealPrice\":\""))
                 dealPrice = Double.parseDouble(j.substring(13, j.length()-1));
+            if (j.startsWith("\"URL\":\"")) {
+                url = j.substring(7, j.length() - 1);
+                url = url.replace("\\","");
+            }
         }
 
-        Coupon coupon = new Coupon(name,dealTitle,disclaimer,dealInfo,expirationDate,originalPrice,dealPrice);
+        Coupon coupon = new Coupon(name,dealTitle,disclaimer,dealInfo,expirationDate,originalPrice,dealPrice,url);
         return coupon;
     }
 
