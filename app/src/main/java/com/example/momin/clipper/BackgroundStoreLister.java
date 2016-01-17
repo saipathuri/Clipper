@@ -29,7 +29,7 @@ public class BackgroundStoreLister extends AsyncTask<String, Void, JSONObject> {
     @Override
     protected JSONObject doInBackground(String... params) {
         try {
-            Log.e("new implementation", "in the class");
+
             double lat = 38.8871;
             double lon = -77.0932;
 
