@@ -70,7 +70,7 @@ public class StoreLister {
             while (data != -1) {
                 char current = (char) data;
                 data = isw.read();
-                System.out.print(current);
+                jsoncontent += current;
             }
         } catch (MalformedURLException e1) {
             e1.printStackTrace();
@@ -122,6 +122,7 @@ public class StoreLister {
             }
         }
 
+        Log.i("StoreLister Updated", jsoncontent);
         StoreContent.createList(stores);
 
     }
