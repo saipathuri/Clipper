@@ -59,26 +59,49 @@ public class StoreLister {
         String jsoncontent = null;
 
         URL url = null;
-        try {
-            url = new URL(query);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
         HttpURLConnection urc = null;
         try {
+            url = new URL(query);
             urc = (HttpURLConnection) url.openConnection();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            InputStream in = urc.getInputStream();
+            InputStreamReader isw = new InputStreamReader(in);
 
-        try {
-            InputStream in = new BufferedInputStream(urc.getInputStream());
-            jsoncontent = readStream(in);
-        } catch (IOException e) {
+            int data = isw.read();
+            while (data != -1) {
+                char current = (char) data;
+                data = isw.read();
+                System.out.print(current);
+            }
+        } catch (MalformedURLException e1) {
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        catch (Exception e) {
             e.printStackTrace();
         } finally {
             urc.disconnect();
         }
+//        try {
+//
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        }
+//        try {
+//            urc = (HttpURLConnection) url.openConnection();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        try {
+//            InputStream in = new BufferedInputStream(urc.getInputStream());
+//            jsoncontent = readStream(in);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } finally {
+//            urc.disconnect();
+//        }
+
         ArrayList<String> storeinfo = separateDeals(jsoncontent);
         ArrayList<Store> stores = new ArrayList<Store>();
         ArrayList<Coupon> allCoupons = new ArrayList<Coupon>();
