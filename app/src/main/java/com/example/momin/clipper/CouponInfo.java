@@ -12,10 +12,26 @@ public class CouponInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
        // CouponView sv = new CouponView(this, display);
         setContentView(R.layout.coupon_info_activity);
+
         TextView t=new TextView(this);
         t=(TextView)findViewById(R.id.dealName);
         t.setText(display.getDealTitle());
 
+        TextView dealName =new TextView(this);
+        dealName=(TextView)findViewById(R.id.dealName);
+        dealName.setText(display.getDealTitle());
+
+        TextView dealOrigPrice =new TextView(this);
+        dealName=(TextView)findViewById(R.id.dealOrigPrice);
+        dealName.setText("Original Price: " + display.getOriginalPrice());
+
+        TextView dealNewPrice =new TextView(this);
+        dealName=(TextView)findViewById(R.id.dealNewPrice);
+        dealName.setText("Deal Price: " + display.getDealPrice());
+
+        TextView dealMoneySaved = new TextView(this);
+        dealName=(TextView)findViewById(R.id.dealMoneySaved);
+        dealName.setText("Money saved: " + (display.getDealSavings()));
     }
 
 

@@ -1,6 +1,7 @@
 package com.example.momin.clipper;
 
 import java.util.Locale;
+import java.util.logging.Handler;
 
 
 import android.Manifest;
@@ -144,8 +145,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                     mGoogleApiClient);
         }
          if(mLastLocation != null) {
-             new BackgroundStoreLister().doInBackground();
-             StoreLister.generateListing(mLastLocation);
+             new BackgroundStoreLister().doInBackground(mLastLocation);
          }
 
     }
