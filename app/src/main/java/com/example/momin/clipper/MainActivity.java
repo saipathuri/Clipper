@@ -143,8 +143,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                     mGoogleApiClient);
         }
          if(mLastLocation != null) {
-             new BackgroundStoreLister().doInBackground();
-//             StoreLister.generateListing(mLastLocation);
+//             new BackgroundStoreLister().doInBackground();
+             StoreLister.generateListing(mLastLocation);
          }
 
     }

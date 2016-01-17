@@ -14,8 +14,9 @@ public class Coupon implements Comparable {
     private double dealPrice;
     private double dealSavings;
     private double dealDiscountPercent;
+    private String url;
 
-    public Coupon(String name, String dealTitle, String disclaimer, String dealInfo, String expirationDate, double originalPrice, double dealPrice) {
+    public Coupon(String name, String dealTitle, String disclaimer, String dealInfo, String expirationDate, double originalPrice, double dealPrice, String url) {
         this.name = name;
         this.dealTitle = dealTitle;
         this.disclaimer = disclaimer;
@@ -23,6 +24,7 @@ public class Coupon implements Comparable {
         this.expirationDate = expirationDate;
         this.originalPrice = originalPrice;
         this.dealPrice = dealPrice;
+        this.url = url;
     }
 
 
@@ -57,6 +59,10 @@ public class Coupon implements Comparable {
 
     public String getDealInfo() {
         return dealInfo;
+    }
+
+    public String getUrl() {
+        return url;
     }
 
     public String getExpirationDate() {

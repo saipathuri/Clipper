@@ -47,7 +47,7 @@ public class StoreLister {
         String lat = Double.toString(l.getLatitude());
         String lon = Double.toString(l.getLongitude());
 
-        String mileradius = Integer.toString(2);
+        String mileradius = Integer.toString(10);
         String displimit = Integer.toString(1000);
         String orderby = "radius";
 
@@ -58,6 +58,8 @@ public class StoreLister {
         query += "&mileradius=" + mileradius;
         query += "&limit=" + displimit;
         query += "&orderby=" + orderby;
+
+        System.out.println(query);
 
         String jsoncontent = "";
 
@@ -231,6 +233,7 @@ public class StoreLister {
         String expirationDate = "";
         double originalPrice = 0;
         double dealPrice = 0;
+        String url = "";
         for (String j: details) {
             if (j.startsWith("\"name\":\""))
                 name = j.substring(8, j.length()-1);
@@ -246,9 +249,13 @@ public class StoreLister {
                 originalPrice = Double.parseDouble(j.substring(21, j.length()-1));
             if (j.startsWith("\"dealPrice\":\""))
                 dealPrice = Double.parseDouble(j.substring(13, j.length()-1));
+            if (j.startsWith("\"URL\":\"")) {
+                url = j.substring(7, j.length() - 1);
+                url = url.replace("\\","");
+            }
         }
 
-        Coupon coupon = new Coupon(name,dealTitle,disclaimer,dealInfo,expirationDate,originalPrice,dealPrice);
+        Coupon coupon = new Coupon(name,dealTitle,disclaimer,dealInfo,expirationDate,originalPrice,dealPrice,url);
         return coupon;
     }
 
