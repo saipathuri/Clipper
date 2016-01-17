@@ -40,7 +40,7 @@ public class BackgroundStoreLister extends AsyncTask<Location, Void, Integer> {
                 double lon = mLongitude;
 
                 int mileradius = 5;
-                int displimit = 1000;
+                int displimit = 100;
                 String orderby = "radius";
 
                 String query = "http://api.8coupons.com/v1/getdeals?key=d4aa04ccac274d92eb18748cd60271e1820913dde745898b18ac4219e1e19d7496f3e7c85a1c34d0b2a0cc3bfa6dff85";
