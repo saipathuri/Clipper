@@ -219,7 +219,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
 
     @Override
     public void onListFragmentInteraction(CouponContent2.CouponItem2 item) {
-
+        Intent intent = new Intent(this, CouponInfo.class);
+        CouponInfo.display = item.coupon;
+        startActivity(intent);
     }
 
     /**
