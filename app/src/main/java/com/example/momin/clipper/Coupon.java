@@ -5,6 +5,7 @@ package com.example.momin.clipper;
  */
 public class Coupon {
 
+    private String name;
     private String dealTitle;
     private String disclaimer;
     private String dealInfo;
@@ -14,19 +15,24 @@ public class Coupon {
     private double dealSavings;
     private double dealDiscountPercent;
 
-    public Coupon(String dealTitle, String disclaimer, String dealInfo, String expirationDate, double originalPrice, double dealPrice, double dealSavings, double dealDiscountPercent) {
+    public Coupon(String name, String dealTitle, String disclaimer, String dealInfo, String expirationDate, double originalPrice, double dealPrice) {
+        this.name = name;
         this.dealTitle = dealTitle;
         this.disclaimer = disclaimer;
         this.dealInfo = dealInfo;
         this.expirationDate = expirationDate;
         this.originalPrice = originalPrice;
         this.dealPrice = dealPrice;
-        this.dealSavings = dealSavings;
-        this.dealDiscountPercent = dealDiscountPercent;
     }
 
+
+    public String getName() {
+        return name;
+    }
+
+
     public double getDealDiscountPercent() {
-        return dealDiscountPercent;
+        return (originalPrice-dealPrice)/originalPrice*100;
     }
 
     public double getOriginalPrice() {
@@ -38,7 +44,7 @@ public class Coupon {
     }
 
     public double getDealSavings() {
-        return dealSavings;
+        return originalPrice-dealPrice;
     }
 
     public String getDealTitle() {

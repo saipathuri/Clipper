@@ -34,6 +34,7 @@ public class Store {
         this.state = state;
         this.city = city;
         this.zip = zip;
+        coupons = new ArrayList<Coupon>();
     }
 
     public String getState() {
@@ -52,8 +53,8 @@ public class Store {
         return name;
     }
 
-    public void setCoupons(ArrayList<Coupon> coupons) {
-        this.coupons = coupons;
+    public void addCoupon(Coupon c) {
+        coupons.add(c);
     }
 
     public String getAddress() {

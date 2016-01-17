@@ -81,14 +81,23 @@ public class StoreLister {
         }
         ArrayList<String> storeinfo = separateDeals(jsoncontent);
         ArrayList<Store> stores = new ArrayList<Store>();
+        ArrayList<Coupon> allCoupons = new ArrayList<Coupon>();
         for (int i=0; i< storeinfo.size(); i++) {
             stores.add(generateStore(storeinfo.get(i)));
+            allCoupons.add(generateCoupon(storeinfo.get(i)));
         }
 
         stores.remove(0);
-        StoreContent.createList(stores);
+        allCoupons.remove(0);
 
-
+        for (Store s: stores) {
+            String name = s.getName();
+            for (Coupon c: allCoupons) {
+                if (name.equals(c.getName())) {
+                    s.addCoupon(c);
+                }
+            }
+        }
 
     }
 
@@ -157,6 +166,40 @@ public class StoreLister {
 
         Store store = new Store(name,address,totalDeals,phone,distance,categoryID,subcategoryID,state,city,zip);
         return store;
+    }
+
+    public static Coupon generateCoupon(String s) {
+        StringTokenizer dets = new StringTokenizer(s,",");
+        ArrayList<String> details = new ArrayList<String>();
+        while (dets.hasMoreTokens()) {
+            details.add(dets.nextToken());
+        }
+        String name = null;
+        String dealTitle = null;
+        String disclaimer = null;
+        String dealInfo = null;
+        String expirationDate = null;
+        double originalPrice = 0;
+        double dealPrice = 0;
+        for (String j: details) {
+            if (j.startsWith("\"name\":\""))
+                name = j.substring(8, j.length()-1);
+            if (j.startsWith("\"dealTitle\":\""))
+                dealTitle = j.substring(13, j.length()-1);
+            if (j.startsWith("\"disclaimer\":\""))
+                disclaimer = j.substring(14, j.length()-1);
+            if (j.startsWith("\"dealinfo\":\""))
+                dealInfo = j.substring(12, j.length()-1);
+            if (j.startsWith("\"expirationDate\":\""))
+                expirationDate = j.substring(18, j.length()-1);
+            if (j.startsWith("\"dealOriginalPrice\":\""))
+                originalPrice = Double.parseDouble(j.substring(21, j.length()-1));
+            if (j.startsWith("\"dealPrice\":\""))
+                dealPrice = Double.parseDouble(j.substring(13, j.length()-1));
+        }
+
+        Coupon coupon = new Coupon(name,dealTitle,disclaimer,dealInfo,expirationDate,originalPrice,dealPrice);
+        return coupon;
     }
 
 }
