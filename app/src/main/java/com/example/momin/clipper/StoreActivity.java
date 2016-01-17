@@ -1,12 +1,11 @@
 package com.example.momin.clipper;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.example.momin.clipper.dummy.StoreContent;
+import com.example.momin.clipper.dummy.CouponContent;
 
 public class StoreActivity extends AppCompatActivity implements StoreSpecificCoupons.OnListFragmentInteractionListener {
 
@@ -21,9 +20,9 @@ public class StoreActivity extends AppCompatActivity implements StoreSpecificCou
         fragmentTransaction.add(R.id.lists, sc,"Hello");
         fragmentTransaction.commit();
     }
-    public void onListFragmentInteraction(StoreContent.StoreItem item) {
+    public void onListFragmentInteraction(CouponContent.CouponItem item) {
         Intent intent = new Intent(this, CouponInfo.class);
-        CouponInfo.display = item.id;
+        CouponInfo.display = item.coupon;
         startActivity(intent);
     }
 }

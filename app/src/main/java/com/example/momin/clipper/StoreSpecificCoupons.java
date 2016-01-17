@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.momin.clipper.dummy.CouponContent;
 import com.example.momin.clipper.dummy.StoreContent;
 import com.example.momin.clipper.dummy.StoreContent.StoreItem;
 
@@ -66,7 +67,7 @@ public class StoreSpecificCoupons extends android.app.Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyItemRecyclerViewAdapter2(StoreContent.ITEMS, mListener));
+            recyclerView.setAdapter(new MyItemRecyclerViewAdapter2(CouponContent.ITEMS, mListener));
         }
         return view;
     }
@@ -101,6 +102,6 @@ public class StoreSpecificCoupons extends android.app.Fragment {
      */
     public interface OnListFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onListFragmentInteraction(StoreItem item);
+        void onListFragmentInteraction(CouponContent.CouponItem item);
     }
 }

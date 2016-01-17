@@ -50,12 +50,12 @@ public class StoreContent {
                 String title = stores.get(i - 1).getName();
                 String distance = String.format("double: %.2f", stores.get(i - 1).getDistance());
                 String subTitle = distance + " | # of Deals: " + stores.get(i - 1).getTotalDeals();
-                StoreItem item = new StoreItem(String.valueOf(i), title, subTitle);
+                StoreItem item = new StoreItem(String.valueOf(i), title, subTitle, stores.get(i-1));
                 addItem(item);
             }
         }
         else if(stores.size() == 0){
-            addItem(new StoreItem("666", "No stores/coupons in your area", ""));
+            addItem(new StoreItem("666", "No stores/coupons in your area", "", null));
         }
     }
 
@@ -65,7 +65,7 @@ public class StoreContent {
     }
 
     static StoreItem createDummyItem(int position) {
-        return new StoreItem(String.valueOf(position), "Item " + position, makeDetails(position));
+        return new StoreItem(String.valueOf(position), "Item " + position, makeDetails(position), null);
     }
 
     private static String makeDetails(int position) {
@@ -84,11 +84,13 @@ public class StoreContent {
         public final String id;
         public final String content;
         public final String details;
+        public Store store;
 
-        public StoreItem(String id, String content, String details) {
+        public StoreItem(String id, String content, String details, Store s) {
             this.id = id;
             this.content = content;
             this.details = details;
+            this.store = s;
         }
 
         @Override

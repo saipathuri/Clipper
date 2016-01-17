@@ -47,14 +47,14 @@ public class StoreLister {
         String lat = Double.toString(l.getLatitude());
         String lon = Double.toString(l.getLongitude());
 
-        String mileradius = Integer.toString(10);
+        String mileradius = Double.toString(.1);
         String displimit = Integer.toString(1000);
         String orderby = "radius";
 
 
         String query = "http://api.8coupons.com/v1/getdeals?key=7706d583294296431e81abac1b84d57a3ff88f5b710536108616ae1a0fa4b64919e2fc523bd3a1bdbbab66947a0d67a5";
-        query += "&lat=" + lat;
-        query += "&lon=" + lon;
+        query += "&lat=" + 38.8871;
+        query += "&lon=" + -77.0932;
         query += "&mileradius=" + mileradius;
         query += "&limit=" + displimit;
         query += "&orderby=" + orderby;

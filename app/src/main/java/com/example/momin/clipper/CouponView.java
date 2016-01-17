@@ -10,8 +10,8 @@ import android.view.View;
  * Created by Momin on 1/16/2016.
  */
 public class CouponView extends View {
-    String title;
-    public CouponView(Context context, String t) {
+    Coupon title;
+    public CouponView(Context context, Coupon t) {
         super(context);
         title = t;
     }
@@ -22,6 +22,6 @@ public class CouponView extends View {
         Paint p = new Paint();
         p.setColor(Color.BLACK);
         p.setTextSize(getWidth() / 2);
-        canvas.drawText(title, getWidth() / 2 - (getWidth() / 8), getHeight() / 2 + (getWidth() / 8), p);
+        canvas.drawText(title.getDealTitle(), getWidth() / 2 - (getWidth() / 8), getHeight() / 2 + (getWidth() / 8), p);
     }
 }

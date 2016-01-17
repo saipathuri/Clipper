@@ -25,6 +25,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.momin.clipper.dummy.CouponContent;
 import com.example.momin.clipper.dummy.StoreContent;
 import com.google.android.gms.common.*;
 
@@ -210,7 +211,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     @Override
     public void onListFragmentInteraction(StoreContent.StoreItem item) {
         Intent intent = new Intent(this, StoreActivity.class);
-        CouponInfo.display = item.id;
+       // CouponInfo.display = item.id;
+        CouponContent.createList(item.store.getCoupons());
         startActivity(intent);
     }
     /**
@@ -236,7 +238,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 2;
         }
 
         @Override
@@ -246,8 +248,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                 case 0:
                     return getString(R.string.title_section1).toUpperCase(l);
                 case 1:
-                    return getString(R.string.title_section2).toUpperCase(l);
-                case 2:
                     return getString(R.string.title_section3).toUpperCase(l);
             }
             return null;
