@@ -49,7 +49,7 @@ public class StoreLister {
         String lat = Double.toString(l.getLatitude());
         String lon = Double.toString(l.getLongitude());
 
-        String mileradius = Double.toString(.1);
+        String mileradius = Double.toString(20);
         String displimit = Integer.toString(1000);
         String orderby = "radius";
 

@@ -35,7 +35,7 @@ public class BackgroundStoreLister extends AsyncTask<Location, Void, Integer> {
             double lat = mLatitude;
             double lon = mLongitude;
 
-            int mileradius = 2;
+            int mileradius = 20;
             int displimit = 1000;
             String orderby = "radius";
 
@@ -50,7 +50,7 @@ public class BackgroundStoreLister extends AsyncTask<Location, Void, Integer> {
 
             URL url = null;
             try {
-                url = new URL("http://api.8coupons.com/v1/getdeals?speed=fast&key=7706d583294296431e81abac1b84d57a3ff88f5b710536108616ae1a0fa4b64919e2fc523bd3a1bdbbab66947a0d67a5&lat=38.8871&lon=-77.0932&mileradius=2&limit=1000&orderby=radius");
+                url = new URL(query);
                 Log.e("new implementation", "try url");
             } catch (MalformedURLException e) {
                 e.printStackTrace();
