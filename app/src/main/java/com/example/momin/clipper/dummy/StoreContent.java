@@ -45,12 +45,10 @@ public class StoreContent {
 //    }
 
     public static void createList(ArrayList<Store> stores){
-        Log.e("CRASh!!!", Integer.toString(stores.size()));
         if(stores.size() != 0) {
-            Log.e("CRASh!!!!", "null");
-            for (int i = 1; i <= stores.size() + 1; i++) {
+            for (int i = 1; i <= stores.size(); i++) {
                 String title = stores.get(i - 1).getName();
-                String distance = String.format("%.2f", Double.toString(stores.get(i - 1).getDistance()));
+                String distance = String.format("double: %.2f", stores.get(i - 1).getDistance());
                 String subTitle = distance + " | # of Deals: " + stores.get(i - 1).getTotalDeals();
                 StoreItem item = new StoreItem(String.valueOf(i), title, subTitle);
                 addItem(item);

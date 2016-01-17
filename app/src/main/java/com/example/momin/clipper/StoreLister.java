@@ -80,7 +80,7 @@ public class StoreLister {
 
         try {
             Log.e("StoreLister Updated", "Running under try");
-            url = new URL(query);
+            url = new URL("http://api.8coupons.com/v1/getrealtimetraveleals?key=d4aa04ccac274d92eb18748cd60271e1820913dde745898b18ac4219e1e19d7496f3e7c85a1c34d0b2a0cc3bfa6dff85&limit=1");
             urc = (HttpURLConnection) url.openConnection();
             InputStream in = urc.getInputStream();
             InputStreamReader isw = new InputStreamReader(in);
@@ -89,14 +89,11 @@ public class StoreLister {
             while (data != -1) {
                 char current = (char) data;
                 data = isw.read();
-                Log.e("StoreLister Updated", Character.toString(current));
                 jsoncontent += current;
             }
         } catch (MalformedURLException e1) {
-            Log.e("StoreLister Updated", "Malformed");
             e1.printStackTrace();
         } catch (IOException e1) {
-            Log.e("StoreLister Updated", "IO");
             e1.printStackTrace();
         }
         catch (Exception e) {
@@ -145,7 +142,7 @@ public class StoreLister {
         }
 
 
-        Log.e("StoreLister Updated", jsoncontent);
+        Log.e("Name of thing", stores.get(0).getName());
         StoreContent.createList(stores);
 
     }

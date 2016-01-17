@@ -1,5 +1,6 @@
 package com.example.momin.clipper;
 
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -24,6 +25,7 @@ import java.util.StringTokenizer;
  * Created by MLH-User on 1/16/2016.
  */
 public class BackgroundStoreLister extends AsyncTask<String, Void, JSONObject> {
+    @SuppressLint("LongLogTag")
     @Override
     protected JSONObject doInBackground(String... params) {
         try {
@@ -46,7 +48,7 @@ public class BackgroundStoreLister extends AsyncTask<String, Void, JSONObject> {
 
             URL url = null;
             try {
-                url = new URL(query);
+                url = new URL("http://api.8coupons.com/v1/getdeals?speed=fast&key=7706d583294296431e81abac1b84d57a3ff88f5b710536108616ae1a0fa4b64919e2fc523bd3a1bdbbab66947a0d67a5&lat=38.8871&lon=-77.0932&mileradius=2&limit=1000&orderby=radius");
                 Log.e("new implementation", "try url");
             } catch (MalformedURLException e) {
                 e.printStackTrace();
@@ -74,12 +76,18 @@ public class BackgroundStoreLister extends AsyncTask<String, Void, JSONObject> {
             Log.e("Info", jsoncontent);
 
             ArrayList<String> storeinfo = separateDeals(jsoncontent);
+            System.out.println(storeinfo.get(1));
             ArrayList<Store> stores = new ArrayList<Store>();
             ArrayList<Coupon> allCoupons = new ArrayList<Coupon>();
             for (int i=0; i< storeinfo.size(); i++) {
                 stores.add(generateStore(storeinfo.get(i)));
                 allCoupons.add(generateCoupon(storeinfo.get(i)));
             }
+
+            Log.e("stores 0", stores.get(0).getAddress());
+            Log.e("stores 1", stores.get(1).getAddress());
+            System.out.println(stores.get(0).getAddress());
+            System.out.println(stores.get(1).getAddress());
 
             stores.remove(0);
             allCoupons.remove(0);
@@ -92,7 +100,7 @@ public class BackgroundStoreLister extends AsyncTask<String, Void, JSONObject> {
                     }
                 }
             }
-            Log.e("crash again", Integer.toString(stores.size()));
+            Log.e("After multiple coupon merge", Integer.toString(stores.size()));
             Log.e("new implementation", "before createList call");
             StoreContent.createList(stores);
 
@@ -130,8 +138,9 @@ public class BackgroundStoreLister extends AsyncTask<String, Void, JSONObject> {
         while (dets.hasMoreTokens()) {
             storedetails.add(dets.nextToken());
         }
-        String name = null;
-        String address = null;
+
+        String name = "";
+        String address = "";
         int totalDeals = 0;
         String phone = null;
         double distance = 0;
@@ -142,8 +151,10 @@ public class BackgroundStoreLister extends AsyncTask<String, Void, JSONObject> {
         String zip = null;
 
         for (String j: storedetails) {
-            if (j.startsWith("\"name\":\""))
-                name = j.substring(8, j.length()-1);
+            System.out.println("String j: " + j);
+            if (j.startsWith("\"name\":\"")) {
+                name = j.substring(8, j.length() - 1);
+            }
             if (j.startsWith("\"address\":\""))
                 address = j.substring(11, j.length()-1);
             if (j.startsWith("\"phone\":\""))
@@ -163,6 +174,7 @@ public class BackgroundStoreLister extends AsyncTask<String, Void, JSONObject> {
             if (j.startsWith("\"zip\":\""))
                 zip = j.substring(7, j.length()-1);
         }
+
 
         Store store = new Store(name,address,totalDeals,phone,distance,categoryID,subcategoryID,state,city,zip);
         return store;

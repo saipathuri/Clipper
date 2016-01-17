@@ -61,6 +61,10 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
+        setContentView(R.layout.activity_main);
+
         //Google API
         if (mGoogleApiClient == null) {
             mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -69,8 +73,6 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
                     .addApi(LocationServices.API)
                     .build();
         }
-
-        setContentView(R.layout.activity_main);
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
@@ -140,11 +142,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.TabList
             mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                     mGoogleApiClient);
         }
-        Log.e("new implementation test", "before");
          if(mLastLocation != null) {
-//             new BackgroundStoreLister().doInBackground();
-//             Log.e("new implementation test", "before, in");
-             StoreLister.generateListing(mLastLocation);
+             new BackgroundStoreLister().doInBackground();
+//             StoreLister.generateListing(mLastLocation);
          }
 
     }
