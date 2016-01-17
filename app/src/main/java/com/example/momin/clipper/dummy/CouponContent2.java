@@ -8,6 +8,7 @@ import com.example.momin.clipper.Store;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -38,6 +39,11 @@ public class CouponContent2 {
                      addItem(item);
                  }
             }
+            HashSet<CouponItem2> s = new HashSet<>();
+            s.addAll(ITEMS);
+            ITEMS.clear();
+            ITEMS.addAll(s);
+
             Collections.sort(ITEMS);
             Collections.reverse(ITEMS);
             r.getAdapter().notifyDataSetChanged();
